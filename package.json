@@ -34,7 +34,7 @@
     "typescript": "^5",
     "vitest": "^5.0.5"
   },
-  "description": "GapMap: map what your sources cover, contradict, leave outdated or never answer \u2014 with every finding traceable to its source and a checklist of what to verify next.",
+  "description": "Maps what your sources cover, contradict, leave outdated or never answer, links every finding to its source, and gives you a checklist of what to verify next.",
   "author": "rush",
   "contributors": [
     "Arush Giri"
