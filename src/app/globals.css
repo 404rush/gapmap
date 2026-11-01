@@ -1,0 +1,287 @@
+@import "tailwindcss";
+
+/* GapMap design tokens — a surveyor's sheet: cool paper, navy ink,
+   four survey states drawn with both colour and pattern.  ﹏𓊝﹏ */
+:root {
+  --paper: #eaeef1;
+  --sheet: #fbfcfc;
+  --ink: #172230;
+  --ink-2: #4a5868;
+  --ink-3: #576472;
+  --rule: #c7d0d8;
+  --rule-soft: #dde3e8;
+
+  --covered: #1e6b52;
+  --thin: #2f6fad;
+  --outdated: #a87400;
+  --outdated-ink: #805a00; /* text: 5.3:1 on paper */
+  --contested: #b3261e;
+  --gap: #6f7c89;
+  --gap-ink: #576472;
+
+  --sourced: #172230;
+  --ai: #5b3fd0;
+  --uncertain: #9a3e8e;
+
+  --mark: #ffe55c;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-sheet: var(--sheet);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-rule-soft: var(--rule-soft);
+  --color-covered: var(--covered);
+  --color-thin: var(--thin);
+  --color-outdated: var(--outdated);
+  --color-outdated-ink: var(--outdated-ink);
+  --color-gap-ink: var(--gap-ink);
+  --color-contested: var(--contested);
+  --color-gap: var(--gap);
+  --color-ai: var(--ai);
+  --color-uncertain: var(--uncertain);
+  --color-mark: var(--mark);
+  --font-sans: "Archivo Variable", "Archivo", system-ui, sans-serif;
+  --font-serif: "Newsreader Variable", "Newsreader", Georgia, serif;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  background: var(--paper);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Condensed display type: the label and section heads */
+.display {
+  font-stretch: 72%;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+
+.narrow {
+  font-stretch: 85%;
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ai);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ——— Survey patterns: each status is readable without colour ——— */
+.pat-covered {
+  background: var(--covered);
+}
+.pat-thin {
+  background: repeating-linear-gradient(90deg, var(--thin) 0 6px, color-mix(in srgb, var(--thin) 35%, white) 6px 9px);
+}
+.pat-outdated {
+  background: repeating-linear-gradient(135deg, var(--outdated) 0 4px, color-mix(in srgb, var(--outdated) 25%, white) 4px 8px);
+}
+.pat-contested {
+  background:
+    repeating-linear-gradient(45deg, var(--contested) 0 2px, transparent 2px 7px),
+    repeating-linear-gradient(-45deg, var(--contested) 0 2px, color-mix(in srgb, var(--contested) 18%, white) 2px 7px);
+}
+.pat-gap {
+  background: var(--sheet);
+  outline: 2px dashed var(--gap);
+  outline-offset: -2px;
+}
+
+/* Map node frame styles */
+.node {
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+.node[data-status="gap"] {
+  border: 2px dashed var(--gap);
+  background: transparent;
+}
+.node[data-open="true"] {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 1px var(--ink);
+}
+
+/* Tree connector rail for the knowledge map */
+.tree {
+  position: relative;
+  padding-left: 28px;
+}
+.tree::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 26px;
+  width: 2px;
+  background: var(--ink);
+}
+.tree > li {
+  position: relative;
+}
+.tree > li::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 26px;
+  width: 18px;
+  height: 2px;
+  background: var(--ink);
+}
+
+/* Highlighter for verbatim quotes */
+.mark {
+  background: linear-gradient(transparent 12%, color-mix(in srgb, var(--mark) 85%, transparent) 12% 88%, transparent 88%);
+  padding: 0 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+mark.hit {
+  background: var(--mark);
+  color: var(--ink);
+  padding: 1px 2px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mark) 55%, transparent);
+}
+
+/* ——— Information Facts label ——— */
+.facts {
+  background: #fff;
+  border: 2px solid var(--ink);
+  padding: 10px 12px 12px;
+  color: var(--ink);
+}
+.facts .rule-xl {
+  height: 10px;
+  background: var(--ink);
+  margin: 6px 0;
+}
+.facts .rule-md {
+  height: 5px;
+  background: var(--ink);
+  margin: 4px 0;
+}
+.facts .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  border-top: 1px solid var(--ink);
+  padding: 3px 0;
+}
+.facts .row.sub {
+  padding-left: 14px;
+}
+
+/* Basis chips (sourced / AI suggestion / uncertain) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 4px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes draw {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+.reveal-map {
+  animation: draw 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Signature glyphs (﹏ and 𓊝) — tiny Noto subsets so they render everywhere. */
+@font-face {
+  font-family: "GapMap Sign";
+  src: url("/fonts/sign-fe4f.woff2") format("woff2");
+  unicode-range: U+FE4F;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GapMap Sign";
+  src: url("/fonts/sign-1329d.woff2") format("woff2");
+  unicode-range: U+1329D;
+  font-display: swap;
+}
+.sign {
+  font-family: "GapMap Sign", var(--font-sans);
+}
+
+/* Freshness timeline */
+.timeline-dot {
+  transition: transform 120ms ease;
+}
+.timeline-dot:hover,
+.timeline-dot:focus-visible {
+  transform: scale(1.15);
+}
+
+@media print {
+  html,
+  body {
+    background: #fff;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-break {
+    break-before: page;
+  }
+  /* Keep small blocks whole; let long topic branches flow across pages. */
+  article,
+  blockquote,
+  .facts,
+  #verify-next li {
+    break-inside: avoid;
+  }
+  .lg\:sticky {
+    position: static !important;
+  }
+  .reveal-map {
+    animation: none;
+  }
+}
+
+/* Guided tour highlight */
+.tour-focus {
+  outline: 3px solid var(--ai);
+  outline-offset: 6px;
+  border-radius: 6px;
+  transition: outline-color 150ms ease;
+}

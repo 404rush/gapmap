@@ -1,0 +1,46 @@
+{
+  "name": "gapmap",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run lint && npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/newsreader": "^5.3.0",
+    "@mozilla/readability": "^0.6.0",
+    "linkedom": "^0.18.14",
+    "lucide-react": "^1.66.0",
+    "next": "16.4.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "unpdf": "^1.9.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "^5.0.5"
+  },
+  "description": "GapMap: map what your sources cover, contradict, leave outdated or never answer \u2014 with every finding traceable to its source and a checklist of what to verify next.",
+  "author": "rush",
+  "contributors": [
+    "Arush Giri"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.9"
+  }
+}
