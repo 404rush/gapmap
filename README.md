@@ -247,7 +247,7 @@ scripts/mock-ai.mjs         offline stand-in for Gemini and Tavily
 
 ## Credits
 
-Built by **Arush Giri** (rush) · ﹏𓊝﹏
+Built by **Arush Giri**· ﹏𓊝﹏
 
 Fonts: Archivo and Newsreader (SIL Open Font License, via Fontsource), and a two-glyph subset of Noto Sans for the signature (SIL OFL, see `public/fonts/OFL-Noto.txt`). Icons: Lucide (ISC).
 
