@@ -7,11 +7,11 @@ import type { RawClaim, RawSource, SampleScenario } from "./types";
 const RAW: RawSource[] = [
   {
     id: "s1",
-    title: "Student Concession Pass — Frequently Asked Questions",
+    title: "Student Concession Pass: Frequently Asked Questions",
     site: "Ambarpur Metro Rail (sample)",
     url: "https://ambarpurmetro.example/student-pass/faq",
     type: "official",
-    text: `Student Concession Pass — Frequently Asked Questions
+    text: `Student Concession Pass: Frequently Asked Questions
 Last updated: 12 August 2026
 
 Who can apply?
@@ -67,16 +67,16 @@ Tip: carry your college ID while travelling, as staff may ask to see it.`,
   },
   {
     id: "s4",
-    title: "Student metro pass renewal — anyone done it?",
+    title: "Student metro pass renewal: has anyone done it?",
     site: "Ambarpur Students Forum (sample)",
     url: "https://forum.ambarpurstudents.example/t/student-pass-renewal",
     type: "forum",
-    text: `Student metro pass renewal — anyone done it?
+    text: `Student metro pass renewal: has anyone done it?
 Posted on 15 January 2026
 
 Original post: My pass expires in July. Do I need to apply again or does it renew on its own? The FAQ page says nothing about renewal.
 
-Reply 1: I had to reapply last year. Renewal is not automatic — you submit a fresh application each session with a new bonafide certificate.
+Reply 1: I had to reapply last year. Renewal is not automatic. You submit a fresh application each session with a new bonafide certificate.
 
 Reply 2: When I applied on the portal in December it asked me for a bonafide certificate, not just the college ID card. Maybe they changed it.
 
@@ -121,7 +121,7 @@ const SUBQUESTIONS: SubQuestion[] = [
 // Saved output of the extraction step. s4c3 is a deliberately mismatched
 // quote, kept to show the verbatim check downgrading it to "uncertain".
 const CLAIMS: RawClaim[] = [
-  { id: "s1c1", sourceId: "s1", subQuestionId: "q1", claim: "Full-time students aged 12–25 at recognised institutions in Ambarpur district can apply.", quote: "Full-time students aged 12 to 25 who are enrolled in a school, college or university recognised by the State Education Board" },
+  { id: "s1c1", sourceId: "s1", subQuestionId: "q1", claim: "Full-time students aged 12 to 25 at recognised institutions in Ambarpur district can apply.", quote: "Full-time students aged 12 to 25 who are enrolled in a school, college or university recognised by the State Education Board" },
   { id: "s1c2", sourceId: "s1", subQuestionId: "q2", claim: "Pass holders get a 40% concession on regular smart-card fares.", quote: "Pass holders get a 40% concession on the regular smart-card fare for every journey" },
   { id: "s1c3", sourceId: "s1", subQuestionId: "q3", claim: "A valid college or school ID card and an Aadhaar-linked mobile number are needed.", quote: "You need a valid college or school identity card and a mobile number linked to your Aadhaar for OTP verification." },
   { id: "s1c4", sourceId: "s1", subQuestionId: "q4", claim: "Applications are accepted only through the online student portal.", quote: "Applications are accepted only through the online student portal." },
@@ -134,7 +134,7 @@ const CLAIMS: RawClaim[] = [
   { id: "s3c1", sourceId: "s3", subQuestionId: "q2", claim: "Students get a 50% discount from the 2024-25 session.", quote: "will give students a 50% discount on metro fares from the 2024-25 academic session", timeReference: "2024-25 academic session" },
   { id: "s3c2", sourceId: "s3", subQuestionId: "q3", claim: "Applicants must submit a bonafide certificate and a photo ID.", quote: "students must submit a bonafide certificate issued by their institution along with a photo identity card" },
   { id: "s3c3", sourceId: "s3", subQuestionId: "q6", claim: "Renewal is automatic; no need to apply again next year.", quote: "renewal is automatic, so once you have the pass you do not need to apply again next year" },
-  { id: "s4c1", sourceId: "s4", subQuestionId: "q6", claim: "Renewal is not automatic; students reapply each session with a new bonafide certificate.", quote: "Renewal is not automatic — you submit a fresh application each session with a new bonafide certificate." },
+  { id: "s4c1", sourceId: "s4", subQuestionId: "q6", claim: "Renewal is not automatic; students reapply each session with a new bonafide certificate.", quote: "Renewal is not automatic. You submit a fresh application each session with a new bonafide certificate." },
   { id: "s4c2", sourceId: "s4", subQuestionId: "q3", claim: "In December the portal asked for a bonafide certificate, not just the college ID.", quote: "it asked me for a bonafide certificate, not just the college ID card" },
   { id: "s4c3", sourceId: "s4", subQuestionId: "q5", claim: "Applications close on 30 September each year.", quote: "applications for the new session close on 30 September each year" },
   { id: "s5c1", sourceId: "s5", subQuestionId: "q2", claim: "From 1 January 2026 the concession is 40% instead of 50%.", quote: "From 1 January 2026, the concession will be 40% of the regular smart-card fare instead of 50%.", timeReference: "from 1 January 2026" },
@@ -293,11 +293,11 @@ const AI: AiFindings = {
 // this") to watch the deadline gap close on re-run.
 const EXTRA_SOURCE: RawSource = {
   id: "s7",
-  title: "Notice: Student concession pass — applications for 2026-27",
+  title: "Notice: Student concession pass applications for 2026-27",
   site: "Ambarpur Metro Rail (sample)",
   url: "https://ambarpurmetro.example/notices/student-pass-2026-27",
   type: "official",
-  text: `Notice: Student concession pass — applications for 2026-27
+  text: `Notice: Student concession pass applications for 2026-27
 Ref. No. AMR/SC/2026/114
 Date: 20 October 2026
 

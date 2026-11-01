@@ -135,7 +135,7 @@ export function EvidenceViewer({ source, claim, now, onClose }: { source: Source
               <p className="mt-2 text-[13px] text-uncertain">
                 The AI quoted &ldquo;{claim.quote}&rdquo;, but that wording was not found on this page, so GapMap treats the claim as uncertain and doesn&rsquo;t count it as
                 evidence.
-                {near ? " The passage with the most similar words is outlined below — it is not a match, check it yourself." : " No similar passage was found."}
+                {near ? " The passage with the most similar words is outlined below. It isn't a match, so check it yourself." : " No similar passage was found."}
               </p>
             )}
             {claim.verified && isAi && (
@@ -152,7 +152,7 @@ export function EvidenceViewer({ source, claim, now, onClose }: { source: Source
                 <mark
                   ref={markRef}
                   className={hasHit ? "hit" : "rounded-sm bg-transparent px-0.5 text-ink outline-2 outline-offset-2 outline-dashed outline-uncertain"}
-                  title={hasHit ? "The quoted passage" : "Closest passage — not a match"}
+                  title={hasHit ? "The quoted passage" : "Closest passage (not a match)"}
                 >
                   {text.slice(span.start, span.end)}
                 </mark>

@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "GapMap — a knowledge map of what your sources cover, contradict, leave outdated or never answer.";
+export const alt = "GapMap: a map of what your sources cover, contradict, leave outdated or never answer.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -29,7 +29,7 @@ export default function Image() {
           <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
             <div style={{ fontSize: 60, fontWeight: 800, lineHeight: 1.05, letterSpacing: -1.5, maxWidth: 600 }}>Find out what your sources don&rsquo;t tell you.</div>
             <div style={{ fontSize: 26, color: "#3a4756", maxWidth: 600, lineHeight: 1.35 }}>
-              Gaps, conflicts, outdated details and unanswered questions — every finding linked to the exact sentence it came from.
+              Gaps, conflicts, outdated details and unanswered questions, with every finding linked to the exact sentence it came from.
             </div>
           </div>
         </div>

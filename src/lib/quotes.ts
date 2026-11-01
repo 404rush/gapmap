@@ -149,7 +149,7 @@ export function closestPassage(text: string, quote: string): Passage | undefined
   return best && best.score >= 0.5 ? best : undefined;
 }
 
-/** True when `quote` (normalised) appears in `text` — used to spot one source repeating another. */
+/** True when `quote` (normalised) appears in `text`. Used to spot one source repeating another. */
 export function containsQuote(text: string, quote: string): boolean {
   const q = wordsOnlyWithMap(quote).norm.trim();
   if (q.split(" ").length < 6) return false;

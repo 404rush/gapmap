@@ -1,6 +1,6 @@
 // Source independence check: detect when several "sources" are really
 // copies of one original (copied or lightly reworded text). Uses word
-// 5-gram shingles and overlap ratios — deterministic, no AI.
+// 5-gram shingles and overlap ratios. Deterministic, no AI.
 
 import type { IndependenceGroup } from "./types";
 
@@ -12,7 +12,7 @@ function shingles(text: string, n = 5): Set<string> {
 }
 
 /** Two texts count as copies only when they share a substantial amount of wording
- * relative to BOTH texts — so a forum post quoting one sentence of an official
+ * relative to BOTH texts, so a forum post quoting one sentence of an official
  * page is not treated as a copy of it. */
 export const MIN_SHARED = 20;
 export const MIN_SMALL_RATIO = 0.3;

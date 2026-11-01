@@ -22,7 +22,7 @@ export class FetchError extends Error {
   }
 }
 
-// ——— Address safety ———
+// Address safety
 
 export function isPrivateIp(ip: string): boolean {
   let addr = ip.toLowerCase();
@@ -123,7 +123,7 @@ export function decodeHtml(buf: Uint8Array, contentType: string): string {
   }
 }
 
-// ——— robots.txt ———
+// robots.txt
 
 const robotsCache = new Map<string, { rules: { allow: boolean; path: string }[]; at: number }>();
 
@@ -182,7 +182,7 @@ export async function robotsAllows(url: URL): Promise<boolean> {
   return robotsAllowsPath(entry.rules, url.pathname + url.search);
 }
 
-// ——— Text extraction ———
+// Text extraction
 
 const BLOCK = new Set([
   "ADDRESS", "ARTICLE", "ASIDE", "BLOCKQUOTE", "DD", "DETAILS", "DIV", "DL", "DT", "FIELDSET", "FIGCAPTION", "FIGURE", "FOOTER", "FORM",
@@ -500,6 +500,6 @@ export function textToSource(args: { id: string; title: string; text: string; da
     text,
     fetchedAt: now.toISOString(),
     via: "pasted",
-    note: args.isAiAnswer ? "Pasted AI answer — checked like any other source, never treated as evidence on its own." : undefined,
+    note: args.isAiAnswer ? "Pasted AI answer. It's checked like any other source but never treated as evidence on its own." : undefined,
   };
 }

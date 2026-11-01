@@ -9,11 +9,11 @@ import type { RawClaim, RawSource, SampleScenario } from "./types";
 const RAW: RawSource[] = [
   {
     id: "s1",
-    title: "Water supply advisory — East Ward, Lakeview Colony and Hill Road",
+    title: "Water supply advisory: East Ward, Lakeview Colony and Hill Road",
     site: "Riverton Municipal Corporation (sample)",
     url: "https://riverton-mc.example/water/advisory",
     type: "official",
-    text: `Water supply advisory — East Ward, Lakeview Colony and Hill Road
+    text: `Water supply advisory: East Ward, Lakeview Colony and Hill Road
 Riverton Municipal Corporation
 Last updated: 29 October 2026
 
@@ -54,11 +54,11 @@ Let the water cool in a clean, covered container. Use boiled or bottled water fo
   },
   {
     id: "s4",
-    title: "East Ward water — is it safe now?",
+    title: "Is East Ward water safe now?",
     site: "Riverton Residents Forum (sample)",
     url: "https://forum.riverton-residents.example/t/east-ward-water",
     type: "forum",
-    text: `East Ward water — is it safe now?
+    text: `Is East Ward water safe now?
 Posted on 30 October 2026
 
 Original post: The corporation's page says the advisory for East Ward was lifted on 28 October, but my tap water still smells of chlorine. Is it safe to drink?
@@ -231,11 +231,11 @@ const AI: AiFindings = {
 
 const EXTRA_SOURCE: RawSource = {
   id: "s7",
-  title: "Water quality test report — East Ward and Lakeview Colony",
+  title: "Water quality test report: East Ward and Lakeview Colony",
   site: "Riverton Municipal Corporation (sample)",
   url: "https://riverton-mc.example/water/test-report-oct-2026",
   type: "official",
-  text: `Water quality test report — East Ward and Lakeview Colony
+  text: `Water quality test report: East Ward and Lakeview Colony
 Published: 28 October 2026
 
 Samples from 12 points in East Ward and Lakeview Colony were tested on 26 and 27 October 2026. All samples met drinking water standards for bacteria.

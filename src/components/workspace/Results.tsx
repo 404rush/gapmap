@@ -60,7 +60,7 @@ export function Results({ a, checks, setCheck, onFindSource, onEditSources, onEx
       {
         target: "map-section",
         title: "The knowledge map",
-        body: "One branch per topic from the coverage plan, planned before any source was read. Status is shown by colour and pattern, and computed by fixed rules — not by the AI.",
+        body: "One branch per topic from the coverage plan, planned before any source was read. Status is shown by colour and pattern, and computed by fixed rules, not by the AI.",
       },
     ];
     const byStatus = (s: string) => a.results.find((r) => r.status === s);
@@ -74,9 +74,9 @@ export function Results({ a, checks, setCheck, onFindSource, onEditSources, onEx
         target: `node-${contested.subQuestionId}`,
         prepare: () => openNode(contested.subQuestionId),
         title: "A possible conflict",
-        body: `“${nodeText(contested.subQuestionId)}” — both sides are quoted word-for-word, with the likely reason and what would settle it.${
+        body: `“${nodeText(contested.subQuestionId)}”: both sides are quoted word for word, with the likely reason and what would settle it.${
           a.conflicts.some((c) => c.subQuestionId === contested.subQuestionId && c.detectedBy === "rule")
-            ? " “Number check” means GapMap's own rules caught it from the quoted numbers — even though the AI missed it."
+            ? " “Number check” means GapMap's own rules caught it from the quoted numbers, even though the AI missed it."
             : " Tap a source tag or “View evidence” to see the quote highlighted on the page."
         }`,
       });
@@ -94,7 +94,7 @@ export function Results({ a, checks, setCheck, onFindSource, onEditSources, onEx
         title: "A potential gap",
         body: canAddExtra
           ? "None of the sources answer this. Try “Find a source for this topic”: add the sample's newer source, re-run, and the map shows what changed."
-          : "None of the sources answer this — not proof it doesn't exist, only that these sources don't say. “Find a source for this topic” takes you back to add one.",
+          : "None of the sources answer this. That isn't proof it doesn't exist, only that these sources don't say. “Find a source for this topic” takes you back to add one.",
       });
     if (a.label.aiAnswers)
       steps.push({

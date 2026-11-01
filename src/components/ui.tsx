@@ -117,7 +117,7 @@ export function SourceDate({ s }: { s: Pick<SourceMeta, "publishedDate" | "dateL
   );
 }
 
-// ——— Evidence context: lets any component open the evidence viewer ———
+// Evidence context: lets any component open the evidence viewer
 export interface EvidenceApi {
   openClaim: (claimId: string) => void;
   openSource: (sourceId: string) => void;
@@ -188,7 +188,7 @@ export const btn = {
   link: "inline-flex items-center gap-1 text-[13px] font-semibold text-ai hover:underline",
 };
 
-// ——— Accessible tabs: roving focus, arrow keys, Home/End ———
+// Accessible tabs: roving focus, arrow keys, Home/End
 export interface TabDef<T extends string> {
   id: T;
   label: ReactNode;

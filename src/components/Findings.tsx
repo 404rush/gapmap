@@ -173,7 +173,7 @@ function GapsTab({
   return (
     <div className="space-y-5">
       <p className="text-[13px] text-ink-2">
-        Topics a complete answer should cover — planned before any source was read — that the sources leave empty or that rest on one origin. A gap means &ldquo;not found in
+        These are topics a complete answer should cover (planned before any source was read) that the sources leave empty or that rest on a single origin. A gap means &ldquo;not found in
         these sources&rdquo;, not &ldquo;doesn&rsquo;t exist&rdquo;.
       </p>
       <div>
@@ -185,7 +185,7 @@ function GapsTab({
             ))}
           </ul>
         ) : (
-          <p className="text-[13px] text-ink-3">None — every topic has at least one source.</p>
+          <p className="text-[13px] text-ink-3">None. Every topic has at least one source.</p>
         )}
       </div>
       <div>
@@ -205,7 +205,7 @@ function GapsTab({
 }
 
 function ConflictsTab({ a, between, vsAi }: { a: Analysis; between: Conflict[]; vsAi: Conflict[] }) {
-  if (!a.conflicts.length) return <Empty text="No conflicts detected between these sources. That's a signal too, not proof — the sources may share an origin." />;
+  if (!a.conflicts.length) return <Empty text="No conflicts detected between these sources. That's a signal too, not proof: the sources may share an origin." />;
   const hasAi = a.label.aiAnswers > 0;
   return (
     <div className="space-y-5">
@@ -386,15 +386,15 @@ function SourcesTab({ a }: { a: Analysis }) {
                     <Search size={13} aria-hidden /> The site blocked direct reading, so the search service&rsquo;s copy of the page was used.
                   </p>
                 )}
-                {st?.cached && <p className="mt-1 text-[12.5px] text-ink-3">Unchanged since the last run — earlier extraction reused.</p>}
+                {st?.cached && <p className="mt-1 text-[12.5px] text-ink-3">Unchanged since the last run, so the earlier extraction was reused.</p>}
                 {g && (
                   <p className="mt-1 flex items-center gap-1.5 text-[12.5px] font-semibold text-outdated-ink">
                     <Copy size={13} aria-hidden /> Shares about {Math.round(g.similarity * 100)}% of its wording with{" "}
                     {g.sourceIds
                       .filter((x) => x !== s.id)
                       .map(tagOf)
-                      .join(", ")}{" "}
-                    — counted as one origin.
+                      .join(", ")}
+                    , so they count as one origin.
                   </p>
                 )}
               </div>

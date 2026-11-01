@@ -79,7 +79,7 @@ export function Checklist({ a, checks, setCheck, onFindSource, onJumpToNode, onP
         <div className="h-full bg-covered transition-[width]" style={{ width: `${a.checklist.length ? (doneCount / a.checklist.length) * 100 : 0}%` }} />
       </div>
 
-      {!a.checklist.length && <p className="py-6 text-center text-[14px] text-ink-3">Nothing to verify — every topic is covered by independent, dated sources.</p>}
+      {!a.checklist.length && <p className="py-6 text-center text-[14px] text-ink-3">Nothing to verify. Every topic is covered by independent, dated sources.</p>}
 
       <div className="space-y-6">
         {GROUPS.map((g) => {
@@ -240,7 +240,7 @@ function NoteEditor({ initial, onSave, onCancel }: { initial: string; onSave: (s
         onChange={(e) => setText(e.target.value)}
         rows={3}
         className="mt-1 w-full rounded-md border border-ink bg-white p-2 text-[14px]"
-        placeholder="e.g. Called the helpline on 3 Nov — they confirmed the 30 November deadline."
+        placeholder="e.g. Called the helpline on 3 Nov. They confirmed the 30 November deadline."
       />
       <div className="mt-1.5 flex gap-2">
         <button type="button" className={btn.primary} onClick={() => onSave(text)}>

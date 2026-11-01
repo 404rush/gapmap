@@ -8,7 +8,7 @@ import type { Mode } from "./session";
 
 const VOL_LABEL: Record<Volatility, string> = {
   fast: "Changes yearly or faster",
-  medium: "Changes every 1–2 years",
+  medium: "Changes every 1 to 2 years",
   slow: "Rarely changes",
 };
 

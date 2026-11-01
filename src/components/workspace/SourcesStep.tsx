@@ -192,7 +192,7 @@ export function SourcesStep(props: Props) {
               <p className="font-bold">Sample demo: {props.scenario?.title}</p>
               <p className="mt-1 text-ink-2">{props.scenario?.blurb}</p>
               <p className="mt-2 text-[13px] text-ink-3">
-                You can remove sources and re-run — the quote checks, dates, copy and number checks and statuses are recomputed live. Switch to{" "}
+                You can remove sources and re-run. Quote checks, dates, copy and number checks and statuses are all recomputed live. Switch to{" "}
                 <span className="font-semibold">Live sources</span> in the header to analyse real pages.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -330,7 +330,7 @@ function ItemRow({
               {s.userEdited?.type && <span className="text-ink-3">(type set by you)</span>}
             </div>
           )}
-          {s?.via === "search-service" && <p className="mt-1 text-[12px] text-ink-3">Site blocked direct reading — using the search service&rsquo;s copy.</p>}
+          {s?.via === "search-service" && <p className="mt-1 text-[12px] text-ink-3">The site blocked direct reading, so the search service&rsquo;s copy is used.</p>}
           {s && editing && (
             <EditSource
               s={s}
@@ -384,7 +384,7 @@ function EditSource({ s, onSave, onCancel }: { s: Source; onSave: (p: { sourceTy
   const today = new Date().toISOString().slice(0, 10);
   return (
     <div className="mt-2 rounded-md border border-rule bg-sheet p-2.5">
-      <p className="text-[12px] text-ink-3">Detected automatically. Correct it if it&rsquo;s wrong — the change is marked in the results.</p>
+      <p className="text-[12px] text-ink-3">Detected automatically. If it&rsquo;s wrong, correct it here and the results will mark the change.</p>
       <div className="mt-1.5 flex flex-wrap items-end gap-2">
         <label className="text-[12px] font-semibold">
           Type
@@ -586,7 +586,7 @@ function SearchPanel({
           );
         })}
       </ul>
-      {search.results.length > 0 && <p className="mt-2 text-[12px] text-ink-3">Results from Tavily web search. Pick a mix of source types — official pages first.</p>}
+      {search.results.length > 0 && <p className="mt-2 text-[12px] text-ink-3">Results from Tavily web search. Pick a mix of source types, starting with official pages.</p>}
     </div>
   );
 }
@@ -686,7 +686,7 @@ function PdfForm({ onAdd }: { onAdd: (f: File) => void }) {
       <label htmlFor="pdf" className="flex cursor-pointer flex-col items-center gap-2 rounded-md border-2 border-dashed border-ink-3 bg-white p-6 text-center hover:border-ink">
         <FileUp size={22} aria-hidden />
         <span className="text-[14px] font-semibold">Choose a PDF (up to 6 MB)</span>
-        <span className="text-[12.5px] text-ink-3">Text-based PDFs work best. Scanned images can&rsquo;t be read — paste their text instead.</span>
+        <span className="text-[12.5px] text-ink-3">Text-based PDFs work best. Scanned images can&rsquo;t be read, so paste their text instead.</span>
       </label>
       <input
         id="pdf"

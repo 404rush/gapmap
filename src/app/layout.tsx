@@ -8,14 +8,14 @@ const site = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_PROJECT_PRO
 
 export const metadata: Metadata = {
   metadataBase: new URL(site),
-  title: "GapMap — see what your sources don't tell you",
+  title: "GapMap: find out what your sources don't tell you",
   description:
-    "GapMap reads several sources on a question and maps what is covered, contested, outdated or missing — with every finding traceable to its source and a checklist of what to verify next.",
+    "GapMap reads several sources on a question and maps what is covered, contested, outdated or missing, with every finding traceable to its source and a checklist of what to verify next.",
   authors: [{ name: "rush" }],
   creator: "Arush Giri",
   openGraph: {
-    title: "GapMap — see what your sources don't tell you",
-    description: "Gaps, conflicts, outdated details and unanswered questions across your sources — every finding linked to the exact sentence it came from.",
+    title: "GapMap: find out what your sources don't tell you",
+    description: "Gaps, conflicts, outdated details and unanswered questions across your sources, with every finding linked to the exact sentence it came from.",
     type: "website",
   },
   twitter: { card: "summary_large_image" },

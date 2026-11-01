@@ -1,5 +1,5 @@
-// The live pipeline end to end — /api/plan → /api/source → /api/extract →
-// /api/analyze — with the Gemini API replaced by a fake, so it runs offline.
+// The live pipeline end to end (/api/plan, /api/source, /api/extract,
+// /api/analyze) with the Gemini API replaced by a fake, so it runs offline.
 // The fake deliberately misbehaves: the first model name is "gone" (404),
 // one quote is invented, and the analysis reply contains junk items.
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
@@ -9,7 +9,7 @@ import { POST as plan } from "@/app/api/plan/route";
 import { POST as source } from "@/app/api/source/route";
 import type { Analysis, Claim, Source, SubQuestion } from "@/lib/types";
 
-const OFFICIAL = `Water supply advisory — East Ward
+const OFFICIAL = `Water supply advisory: East Ward
 Last updated: 29 October 2026
 Residents of East Ward should bring drinking water to a rolling boil for at least 1 minute before use.
 The advisory remains in force until test results are published.`;

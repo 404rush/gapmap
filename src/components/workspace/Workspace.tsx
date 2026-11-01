@@ -89,7 +89,7 @@ export default function Workspace() {
   const historySaved = useRef<string | undefined>(undefined);
   const noticeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
-  // ——— Restore the last session, and check which keys the server has ———
+  // Restore the last session, and check which keys the server has
   useEffect(() => {
     let alive = true;
     Promise.all([loadCurrent(), listHistory()])
@@ -112,7 +112,7 @@ export default function Workspace() {
     };
   }, []);
 
-  // ——— Save (debounced); keep each new analysis in Recent ———
+  // Save (debounced), and keep each new analysis in Recent
   useEffect(() => {
     if (!hydrated) return;
     const t = setTimeout(() => {
@@ -179,7 +179,7 @@ export default function Workspace() {
     else update({ scenarioId: id, question: getScenario(id).question });
   };
 
-  // ——— Step 1 → 2: plan the coverage ———
+  // Step 1 to 2: plan the coverage
   const planReady = s.subQuestions.length > 0 && s.plannedFor === s.question.trim();
   const plan = async () => {
     if (planReady) return goTo(2);
@@ -202,7 +202,7 @@ export default function Workspace() {
     }
   };
 
-  // ——— Step 3: sources ———
+  // Step 3: sources
   const enterSources = () => {
     const subQuestions = cleanTopics(s.subQuestions);
     if (s.mode === "sample" && s.items.length === 0) {
@@ -329,7 +329,7 @@ export default function Workspace() {
     scrollTo();
   };
 
-  // ——— Step 3 → 4: run the analysis ———
+  // Step 3 to 4: run the analysis
   const readySources = useMemo(() => s.items.filter((i) => i.status === "ready" && i.source).map((i) => i.source!), [s.items]);
   const currentInputs = useMemo(() => inputsKey(s.question, cleanTopics(s.subQuestions), readySources), [s.question, s.subQuestions, readySources]);
   const stale = !!s.analysis?.inputsKey && s.analysis.inputsKey !== currentInputs;
@@ -389,8 +389,8 @@ export default function Workspace() {
               raised.push(...r.raised.map((q) => ({ sourceId: src.id, question: q })));
               status[src.id] = { status: r.claims.length ? "ok" : "no-claims", excerpted: r.excerpted || undefined, cached: cached || undefined };
               const bad = r.claims.filter((c) => !c.verified).length;
-              if (cached) notes.push(`${tagOf(src.id)}: unchanged since the last run — earlier extraction reused.`);
-              if (bad) notes.push(`${tagOf(src.id)}: ${bad} quote${bad > 1 ? "s" : ""} not found on the page — marked uncertain.`);
+              if (cached) notes.push(`${tagOf(src.id)}: unchanged since the last run, so the earlier extraction was reused.`);
+              if (bad) notes.push(`${tagOf(src.id)}: ${bad} quote${bad > 1 ? "s" : ""} not found on the page, so marked uncertain.`);
             } catch (e) {
               if (signal.aborted) return;
               status[src.id] = { status: "failed", error: errMsg(e) };
@@ -460,7 +460,7 @@ export default function Workspace() {
     }
   };
 
-  // ——— Evidence lookup for every view ———
+  // Evidence lookup for every view
   const fullSourceById = useMemo(() => new Map(s.items.filter((i) => i.source).map((i) => [i.id, i.source!])), [s.items]);
   const analysis = s.analysis;
   const evidenceApi = useMemo(

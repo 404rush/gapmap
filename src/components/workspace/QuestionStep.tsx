@@ -16,8 +16,8 @@ const EXAMPLES = [
 const HOW = [
   ["Question", "You say what you need to know."],
   ["Coverage plan", "Before reading anything, GapMap lists what a complete answer should cover. You can edit it."],
-  ["Sources", "Add links, PDFs or pasted text — or search. Paste a chatbot's answer to audit it."],
-  ["Findings", "Each topic is marked covered, single-source, possibly outdated, possibly conflicting, or a potential gap — with the quotes behind it."],
+  ["Sources", "Add links, PDFs or pasted text, or search the web. Paste a chatbot's answer to audit it."],
+  ["Findings", "Each topic is marked covered, single-source, possibly outdated, possibly conflicting, or a potential gap, with the quotes behind it."],
   ["Verify next", "A prioritised checklist: where to check, what to search, and a ready-made question to ask."],
 ];
 
@@ -53,7 +53,7 @@ export function QuestionStep(props: {
         </h1>
         <p className="mt-4 max-w-[60ch] text-[17px] leading-relaxed text-ink-2">
           Ask a question and add the pages you&rsquo;d normally read. GapMap maps what they cover, where they disagree, what may be out of date and what none of them
-          answer — every finding linked to the exact sentence it came from — then tells you what to verify next.
+          answer. Every finding links to the exact sentence it came from, and you finish with a list of what to verify next.
         </p>
 
         <div className="mt-8 rounded-lg border-2 border-ink bg-sheet p-4 sm:p-5">

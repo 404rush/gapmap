@@ -86,7 +86,7 @@ export function FactsLabel({ a, onJump }: { a: Analysis; onJump?: (tab: Findings
       )}
       <div className="row">
         <span>
-          <span className="font-bold text-ai">AI-written notes</span> <span className="text-[11px]">(summaries, explanations, next steps — signals to check)</span>
+          <span className="font-bold text-ai">AI-written notes</span> <span className="text-[11px]">(signals to check: summaries, explanations, next steps)</span>
         </span>
         <span className="font-bold">{L.aiCount}</span>
       </div>

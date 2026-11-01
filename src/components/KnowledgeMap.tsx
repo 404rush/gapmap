@@ -43,7 +43,7 @@ function Overview({ a, onJump }: { a: Analysis; onJump: (id: string) => void }) 
               type="button"
               onClick={() => onJump(q.id)}
               className="flex h-full w-full items-start gap-2 rounded-md border border-rule bg-sheet p-2 text-left hover:border-ink"
-              title={`${q.text} — ${STATUS[r.status].label}`}
+              title={`${q.text} (${STATUS[r.status].label})`}
             >
               <StatusSwatch status={r.status} size={16} />
               <span className="min-w-0">
@@ -178,7 +178,7 @@ function MapNode({
                   ))}
                 </ul>
               </div>
-              <p className="text-[12px] text-ink-3 sm:col-span-2">Computed by GapMap from the quoted evidence, source types and dates — not written by the AI.</p>
+              <p className="text-[12px] text-ink-3 sm:col-span-2">Computed by GapMap from the quoted evidence, source types and dates, not written by the AI.</p>
             </div>
 
             {newest && (status === "outdated" || status === "contested") && (
@@ -213,7 +213,7 @@ function MapNode({
             {status === "gap" && (
               <div className="rounded-md border-2 border-dashed border-gap bg-white p-3 text-[14px]">
                 <p className="font-bold">Potential gap: not found in the sources reviewed.</p>
-                <p className="mt-0.5 text-ink-2">This doesn&rsquo;t mean the answer doesn&rsquo;t exist — only that none of these sources state it. {q.why}</p>
+                <p className="mt-0.5 text-ink-2">That doesn&rsquo;t mean the answer doesn&rsquo;t exist, only that none of these sources state it. {q.why}</p>
               </div>
             )}
 

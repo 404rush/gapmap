@@ -129,8 +129,8 @@ export function assembleAnalysis(input: AssembleInput): Analysis {
         kind: f === "outdated" ? "old-date" : "check-soon",
         reason:
           f === "outdated"
-            ? `Dated ${months} months ago — older than the topics it covers usually stay reliable.`
-            : `Dated ${months} months ago — probably still right, but worth re-checking.`,
+            ? `Dated ${months} months ago, which is older than the topics it covers usually stay reliable.`
+            : `Dated ${months} months ago. Probably still right, but worth re-checking.`,
         basis: "sourced",
       });
     }
@@ -185,7 +185,7 @@ export function assembleAnalysis(input: AssembleInput): Analysis {
   const conflictById = new Map(conflicts.map((c) => [c.id, c]));
   const involvesAi = (c: Conflict) => c.claimIds.some(isAiClaim);
 
-  // 5. Per-topic status, confidence and newest evidence — decided from evidence, not by the AI.
+  // 5. Per-topic status, confidence and newest evidence, decided from evidence and not by the AI.
   const summaryById = new Map(ai.summaries.map((s) => [s.subQuestionId, s.summary]));
   const results: SubQuestionResult[] = subQuestions.map((q) => {
     const all = claims.filter((c) => c.subQuestionId === q.id);

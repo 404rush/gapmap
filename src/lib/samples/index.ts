@@ -39,7 +39,7 @@ export function toSampleSource(r: RawSource, now: Date): Source {
     fetchedAt: now.toISOString(),
     via: "sample",
     isSample: true,
-    note: r.type === "ai-answer" ? "Pasted AI answer — checked like any other source, never treated as evidence on its own." : undefined,
+    note: r.type === "ai-answer" ? "Pasted AI answer. It's checked like any other source but never treated as evidence on its own." : undefined,
   };
 }
 

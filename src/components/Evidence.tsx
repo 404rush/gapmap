@@ -24,7 +24,7 @@ export function ClaimRow({ claim, newest = false }: { claim: Claim; newest?: boo
       {claim.verified && claim.matchKind === "ignoring-punctuation" && (
         <p className="mt-1.5 text-[12.5px] text-ink-3">Words match the page exactly; punctuation differs slightly.</p>
       )}
-      {claim.verified && isAi && <p className="mt-1.5 text-[12.5px] text-uncertain">From the pasted AI answer — audited, not used as evidence.</p>}
+      {claim.verified && isAi && <p className="mt-1.5 text-[12.5px] text-uncertain">From the pasted AI answer. Audited, not used as evidence.</p>}
       <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12.5px] text-ink-2">
         <span className="font-bold text-ink">{tagOf(claim.sourceId)}</span>
         <span className="max-w-[260px] truncate">{src?.title}</span>

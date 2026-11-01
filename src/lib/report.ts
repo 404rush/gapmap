@@ -49,7 +49,7 @@ export function buildReport(a: Analysis, checks: Checks = {}): string {
   out.push(`- Sources reviewed: ${L.sourcesReviewed} (${L.independentOrigins} independent origins)${L.aiAnswers ? ` · AI answers audited: ${L.aiAnswers}` : ""}`);
   if (L.sourcesNotAnalysed) out.push(`- Sources that couldn't be analysed: ${L.sourcesNotAnalysed}`);
   out.push(
-    `- Claims extracted: ${L.claims.total} — ${L.claims.verified} quoted word-for-word, ${L.claims.unverified} quote not found${L.aiAnswers ? `, ${L.claims.fromAiAnswer} from the AI answer` : ""}`,
+    `- Claims extracted: ${L.claims.total} (${L.claims.verified} quoted word for word, ${L.claims.unverified} quote not found${L.aiAnswers ? `, ${L.claims.fromAiAnswer} from the AI answer` : ""})`,
   );
   out.push(`- AI-written notes: ${L.aiCount}`);
   out.push(`- Freshness: ${L.freshness.fresh} fresh, ${L.freshness.checkSoon} check soon, ${L.freshness.outdated} possibly outdated, ${L.freshness.undated} undated`);
@@ -73,7 +73,7 @@ export function buildReport(a: Analysis, checks: Checks = {}): string {
   out.push(`## Verify next (${done} of ${a.checklist.length} done)`, "");
   for (const c of a.checklist) {
     const st = checks[checkKey(c)];
-    out.push(`- [${st?.done ? "x" : " "}] **${c.priority.toUpperCase()}** — ${md(c.task)}${c.tag === "new" ? " *(new since last run)*" : ""}`);
+    out.push(`- [${st?.done ? "x" : " "}] **${c.priority.toUpperCase()}:** ${md(c.task)}${c.tag === "new" ? " *(new since last run)*" : ""}`);
     out.push(`  - Why: ${md(c.why)}`);
     out.push(`  - Where to verify: ${md(c.whereToVerify)}`);
     out.push(`  - Suggested search: \`${c.searchQuery.replace(/`/g, "'")}\``);
@@ -92,7 +92,7 @@ export function buildReport(a: Analysis, checks: Checks = {}): string {
     if (r.summary) out.push(`*AI suggestion:* ${cite(r.summary)}`, "");
     for (const c of a.claims.filter((x) => x.subQuestionId === q.id)) {
       const basis = aiSrc.has(c.sourceId) ? "From the AI answer (audited)" : c.verified ? "Sourced" : "Uncertain (quote not found on page)";
-      out.push(`- ${basis} — ${md(c.claim)} (${tag(c.sourceId)})`);
+      out.push(`- ${basis}: ${md(c.claim)} (${tag(c.sourceId)})`);
       out.push(`  > "${c.quote.replace(/\s+/g, " ").trim()}"`);
     }
     out.push("");
@@ -133,7 +133,7 @@ export function buildReport(a: Analysis, checks: Checks = {}): string {
       s.via === "search-service" ? "text from the search service's copy" : "",
       s.userEdited?.type || s.userEdited?.date ? "type or date corrected by you" : "",
     ].filter(Boolean);
-    out.push(`- **${tag(s.id)}** ${md(s.title)} — ${s.site} (${SOURCE_TYPE_LABEL[s.sourceType]}), ${date}${notes.length ? ` — ${notes.join("; ")}` : ""}${s.url ? ` — <${s.url}>` : ""}`);
+    out.push(`- **${tag(s.id)}** ${md(s.title)} (${s.site}, ${SOURCE_TYPE_LABEL[s.sourceType]}, ${date})${notes.length ? `. ${notes.join("; ")}` : ""}${s.url ? `. <${s.url}>` : ""}`);
   }
   for (const g of a.independence) out.push(`- ${g.sourceIds.map(tag).join(" and ")} share about ${Math.round(g.similarity * 100)}% of their wording and count as one origin.`);
   out.push("", "---", "Made with GapMap · ﹏𓊝﹏");
