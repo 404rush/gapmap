@@ -9,6 +9,11 @@ const str = z.string().catch("");
 /** A field the item is useless without: the item is dropped if it's missing or blank. */
 const need = z.string().trim().min(1);
 const optStr = z.string().optional().catch(undefined);
+/** The AI sometimes writes source ids in lower case ("s5"); the app shows them as S5. */
+export const fixSourceIds = (s: string) => s.replace(/\bs(\d{1,2})(?=\b|c\d)/g, "S$1");
+const prose = str.transform(fixSourceIds);
+const needProse = need.transform(fixSourceIds);
+const optProse = optStr.transform((s) => (s === undefined ? s : fixSourceIds(s)));
 const strArr = z.array(z.unknown()).catch([]).transform((xs) => xs.filter((x): x is string => typeof x === "string"));
 
 /** An array whose items are validated one by one; invalid items are dropped. */
@@ -43,28 +48,28 @@ const priority = z
 
 export const AiFindingsSchema = z
   .object({
-    summaries: list(z.object({ subQuestionId: need, summary: need })),
+    summaries: list(z.object({ subQuestionId: need, summary: needProse })),
     conflicts: list(
       z.object({
         subQuestionId: str,
         claimIds: strArr,
-        summary: need,
+        summary: needProse,
         likelyReason: z.enum(REASONS).catch("unclear"),
-        explanation: str,
-        howToResolve: str,
+        explanation: prose,
+        howToResolve: prose,
         confidence: z.enum(CONFIDENCE).catch("medium"),
       }),
     ),
-    outdated: list(z.object({ sourceId: need, claimId: optStr, reason: need })),
-    openQuestions: list(z.object({ question: need, raisedBySourceIds: strArr, subQuestionId: optStr })),
+    outdated: list(z.object({ sourceId: need, claimId: optStr, reason: needProse })),
+    openQuestions: list(z.object({ question: needProse, raisedBySourceIds: strArr, subQuestionId: optStr })),
     checklist: list(
       z.object({
         priority,
-        task: need,
-        whereToVerify: str,
+        task: needProse,
+        whereToVerify: prose,
         searchQuery: str,
-        why: str,
-        askSource: optStr,
+        why: prose,
+        askSource: optProse,
         relatedIds: strArr,
         origin: z.enum(ORIGINS).catch("general"),
       }),

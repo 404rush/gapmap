@@ -67,6 +67,35 @@ function similar(a: string, b: string): boolean {
   return inter / (wa.size + wb.size - inter) >= 0.6;
 }
 
+// Words that carry no meaning in a web search.
+const FILLER = new Set(
+  ("a an the and or of for to in on at by with from into is are was were be been do does did have has had " +
+    "what which where when who whom whose why how any there their these those this that it its i my me we our you your " +
+    "should would could can will must may might now before after about apply applies applying verify exactly exact specific " +
+    "need needs needed get got than then also only just more most some such up").split(" "),
+);
+
+/** The meaningful words of a sentence, original spelling kept, duplicates dropped. */
+export function keywords(text: string): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const w of text.match(/[\p{L}\p{N}₹%][\p{L}\p{N}₹%.'-]*/gu) ?? []) {
+    const word = w.replace(/[.'-]+$/, "");
+    const key = word.toLowerCase().replace(/s$/, "");
+    if (word.length < 2 || FILLER.has(word.toLowerCase()) || seen.has(key)) continue;
+    seen.add(key);
+    out.push(word);
+  }
+  return out;
+}
+
+/** A short search: the question's subject first, then what this topic adds. */
+export function searchFor(questionWords: string[], topic: string): string {
+  const seen = new Set(questionWords.map((w) => w.toLowerCase().replace(/s$/, "")));
+  const extra = keywords(topic).filter((w) => !seen.has(w.toLowerCase().replace(/s$/, "")));
+  return [...questionWords, ...extra].slice(0, 9).join(" ");
+}
+
 export interface AssembleInput {
   question: string;
   subQuestions: SubQuestion[];
@@ -321,11 +350,7 @@ export function assembleAnalysis(input: AssembleInput): Analysis {
     const topicIds = [...new Set(c.relatedIds.map(topicOf).filter((x): x is string => !!x))];
     checklist.push({ ...c, id: "", topicIds, searchQuery: c.searchQuery || c.task, whereToVerify: c.whereToVerify || "The official source for this topic" });
   }
-  const questionWords = norm(question)
-    .split(" ")
-    .filter((w) => w.length > 3 && !["what", "should", "verify", "before", "which", "where", "about", "there", "their"].includes(w))
-    .slice(0, 5)
-    .join(" ");
+  const questionWords = keywords(question).slice(0, 4);
   for (const r of results) {
     const q = sqById.get(r.subQuestionId)!;
     if (checklist.some((c) => c.topicIds.includes(q.id))) continue;
@@ -347,7 +372,7 @@ export function assembleAnalysis(input: AssembleInput): Analysis {
               ? `Confirm the current answer with the newest official source: ${q.text}`
               : `Confirm with a second, independent source: ${q.text}`,
       whereToVerify: "The official or primary source for this topic",
-      searchQuery: `${questionWords} ${q.text.replace(/\?$/, "")}`.trim().slice(0, 110),
+      searchQuery: searchFor(questionWords, q.text),
       why: q.why || "Added by GapMap's rules because this topic isn't settled by the sources.",
       relatedIds: [q.id],
       topicIds: [q.id],

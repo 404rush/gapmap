@@ -2,6 +2,8 @@
 
 **Find out what your sources don't tell you.**
 
+**Live site:** https://gapmap-eosin.vercel.app
+
 GapMap reads several sources about a question and maps what they **cover**, where they **disagree**, what may be **out of date** and what **none of them answer**. Every finding links to the exact sentence it came from, anything the AI wrote is labelled, and the analysis ends with a prioritised checklist of what to verify next.
 
 GapMap doesn't answer the question for you, and it never says whether something is true. It shows what the evidence looks like so you can decide what to trust.
@@ -14,18 +16,22 @@ GapMap doesn't answer the question for you, and it never says whether something 
 
 ## Try it in one minute (no keys needed)
 
+Open the live site at https://gapmap-eosin.vercel.app, or run it on your own machine:
+
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000, then:
+and open http://localhost:3000. Then:
 
 1. Click **Sample demo**, pick a scenario, then **Plan what to check**, **Continue to sources** and **Analyse**.
 2. Click **Take the 1-minute tour** next to the results.
 3. Open topic 5 (*Potential gap*) and click **Find a source for this topic**. Add the newer sample source and re-run. The map shows what changed.
 
 The sample sources are fictional and labelled as such on every screen. The AI steps replay saved outputs, but everything else (quote checks, dates, copy and number checks, statuses, confidence, checklist rules) runs live. Remove a source and re-run, and the findings change.
+
+On the live site, **Live sources** works too: it searches the web, reads real pages and runs the AI on them. It uses free API tiers, so a full analysis of five sources takes a minute or two.
 
 ## The problem
 
@@ -150,7 +156,7 @@ Live mode works best with questions about fees, eligibility, deadlines or rules 
 ### Tests and checks
 
 ```bash
-npm test            # 69 unit and pipeline tests (vitest), no network needed
+npm test            # 73 unit and pipeline tests (vitest), no network needed
 npm run check       # lint, typecheck and tests
 npm run build && npm start
 ```
